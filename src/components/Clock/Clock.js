@@ -84,18 +84,14 @@ class Clock extends React.Component {
             <path className="Clock-second__second-arm" d="M300.5 350V55"/>
             <circle className="Clock-sizing-box" cx="300" cy="300" r="253.9"/>
           </g>
-          <g className="Clock-delete" onClick={this.props.onDeleteClick}>
-            <circle className="Clock-delete__background" cx="520" cy="20" r="63.9"/>
-            <circle className="Clock-delete__circle" cx="520" cy="20" r="63.9"/>
-            <circle className="Clock-delete__second-circle" cx="520" cy="20" r="63.9"/>
-            <line className="Clock-delete__cross-line"
-              x1="560" y1="-10" x2="480" y2="55"
-            />
-            <line className="Clock-delete__cross-line"
-              x1="560" y1="55" x2="480" y2="-10"
-            />
-          </g>
         </svg>
+        <a
+          href="#0"
+          className="Clock__delete"
+          onClick={() => this.props.onDeleteClick(this.props.id)}
+        >
+          &#10005;
+        </a>
       </div>
     );
   }

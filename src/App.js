@@ -6,13 +6,6 @@ import Form from './components/Form/Form';
 
 function App() {
   const [clocks, setClocks] = useState([]);
-  const [form, setForm] = useState({ name: '', userTimezone: '' });
-
-  function handleFormChange({ target }) {
-    const { name, value } = target;
-
-    setForm(prevForm => ({ ...prevForm, [name]: value }));
-  }
 
   function handleFormSubmit(form) {
     setClocks((prevState) => [...prevState, {
@@ -20,20 +13,16 @@ function App() {
       name: form.name,
       userTimezone: form.userTimezone,
     }]);
-
-    setForm({ name: '', userTimezone: '' });
   }
 
-  function getClockIndex(target) {
-    const id = target.closest('.Clock-box').id;
-
+  function getClockIndex(id) {
     const index = clocks.findIndex((clock) => clock.id === id);
 
     return index;
   }
 
-  function handleDeleteClick({ target }) {
-    const index = getClockIndex(target);
+  function handleDeleteClick(id) {
+    const index = getClockIndex(id);
 
     const updatedClocks = [
       ...clocks.slice(0, index),
@@ -45,11 +34,7 @@ function App() {
 
   return (
     <div className="App-container">
-      <Form
-        onSubmit={handleFormSubmit}
-        onChange={handleFormChange}
-        form={form}
-      />
+      <Form onFormSubmit={handleFormSubmit} />
       <div className="App-clocks-container">
         {clocks.map((clock) => {
           return (

@@ -5,25 +5,28 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.nameRef = React.createRef();
+    this.state = { name: '', userTimezone: '' };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
     this.nameRef.current.focus();
   }
 
-  render() {
-    const {
-      onSubmit: handleFormSubmit,
-      onChange: handleInputChange,
-      form,
-    } = this.props;
+  handleInputChange({ target }) {
+    const { name, value } = target;
 
+    this.setState(prevForm => ({ ...prevForm, [name]: value }));
+  }
+
+  render() {
     return (
       <form
         className="Form"
         onSubmit={(event) => {
           event.preventDefault();
-          handleFormSubmit(form);
+          this.props.onFormSubmit(this.state);
+          this.setState({ name: '', userTimezone: '' });
           this.nameRef.current.focus();
         }}
       >
@@ -34,8 +37,8 @@ class Form extends React.Component {
             type="text"
             id="name"
             name="name"
-            value={form.name}
-            onChange={handleInputChange}
+            value={this.state.name}
+            onChange={this.handleInputChange}
             ref={this.nameRef}
             autoComplete="off"
             required
@@ -50,8 +53,8 @@ class Form extends React.Component {
             name="userTimezone"
             min="-12"
             max="14"
-            value={form.userTimezone}
-            onChange={handleInputChange}
+            value={this.state.userTimezone}
+            onChange={this.handleInputChange}
             required
           />
         </div>

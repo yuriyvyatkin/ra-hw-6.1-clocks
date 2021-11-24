@@ -13,6 +13,8 @@
 }
 
 .Clock-box {
+  position: relative;
+
   width: 120px;
 }
 
@@ -50,30 +52,6 @@
   stroke-width: 4;
 }
 
-.Clock-delete {
-  cursor: pointer;
-}
-
-.Clock-delete__background {
-  fill: transparent;
-}
-
-.Clock-delete__circle {
-  fill: none;
-  stroke: #000000;
-  stroke-width: 9;
-}
-
-.Clock-delete__second-circle {
-  fill: none;
-  stroke: #ffffff;
-}
-
-.Clock-delete__cross-line {
-  stroke: #000000;
-  stroke-width: 7;
-}
-
 .Clock-sizing-box {
   fill: none;
 }
@@ -82,4 +60,26 @@
 .Clock-minute,
 .Clock-second {
   transform-origin: 300px 300px;
+}
+
+.Clock__delete {
+  position: absolute;
+  top: 30px;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  height: 30px;
+
+  font-weight: 700;
+  font-size: 15px;
+
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  text-decoration: none;
+
+  user-select: none;
 }
